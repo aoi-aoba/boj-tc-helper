@@ -1,0 +1,27 @@
+/* sidebar default container */
+#tc-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px; /* hide from display at first*/
+    width: 400px;
+    height: 100vh;
+    background-color: #ffffff;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 10000;
+    transition: right 0.3s ease-in-out;
+    padding: 20px;
+    border-left: 1px solid #ddd;
+}
+
+/* class when sidebar has opened */
+#tc-sidebar.active {
+    right: 0;
+}
+
+/* style init (inner TCs) */
+.tc-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 4px;
+}

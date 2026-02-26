@@ -1,0 +1,14 @@
+{
+    "manifest_version": 3,
+    "name" : "BOJ Testcase Helper",
+    "version": "1.0.0",
+    "description": "백준 문제의 추가 테스트 케이스를 확인합니다.",
+    "permissions": ["activeTab"],
+    "content_scripts": [
+        {
+            "matches": ["https://www.acmicpc.net/problem/*"],
+            "js": ["content.js"],
+            "css": ["styles.css"]
+        }
+    ]
+}
