@@ -30,15 +30,15 @@
     color: #666;
 }
 
-/* 로딩 스피너 애니메이션 */
+/* loading-spinner animation */
 .loading-spinner {
-    width: 30px;
-    height: 30px;
-    border: 3px solid #f3f3f3;
+    width: 35px;
+    height: 35px;
+    border: 3px solid rgba(52, 152, 219, 0.1);
     border-top: 3px solid #3498db;
     border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 10px;
+    animation: spin 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    margin: 0 auto;
 }
 
 @keyframes spin {
@@ -46,15 +46,22 @@
     100% { transform: rotate(360deg); }
 }
 
-/* 카드 가독성 개선 */
 .tc-card {
     border: 1px solid #e1e4e8;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    transition: transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    margin-bottom: 24px;
+    background-color: #fff;
+    transition: all 0.2s ease-in-out;
 }
 
 .tc-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.tc-card:last-child {
+    margin-bottom: 40px; 
 }
 
 /* card name (ex: ex TC 1, user-added TC 1) */

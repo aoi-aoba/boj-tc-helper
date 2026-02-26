@@ -34,26 +34,35 @@ async function toggleSidebar(problemId) {
 
     const contentArea = document.getElementById('tc-content-area');
 
+    // loading animation
     contentArea.innerHTML = `
-        <div style="text-align:center; margin-top:50px; color:#888;">
+        <div style="text-align:center; margin-top:80px; color:#888;">
             <div class="loading-spinner"></div>
-            <p>${problemId}번 데이터를 동기화 중...</p>
+            <p style="font-size: 13px; margin-top: 15px;">${problemId}번 데이터를 동기화 중...</p>
         </div>
     `;
 
-    const result = await fetchTestcases(problemId);
+    try {
+        // 데이터 요청과 1초 대기를 동시에 시작 (더 긴 로딩감을 위해)
+        const [result] = await Promise.all([
+            fetchTestcases(problemId),
+            new Promise(resolve => setTimeout(resolve, 1000)) // 최소 1초 노출
+        ]);
 
-    if (result.status === 'empty') {
-        contentArea.innerHTML = `
-            <div style="text-align:center; padding:20px; color:#999;">
-                <p>등록된 추가 테스트케이스가 없습니다.</p>
-                <a href="https://www.acmicpc.net/board/search/all/problem/${problemId}" target="_blank" style="color:#3498db; font-size:12px;">질문 게시판에서 찾아보기 ↗</a>
-            </div>
-        `;
-    } else if (result.status === 'error') {
-        contentArea.innerHTML = `<p style="color:#e74c3c; padding:20px;">데이터를 불러오는 중 오류가 발생했습니다.</p>`;
-    } else {
-        renderTestcases(result.data);
+        if (result.status === 'empty') {
+            contentArea.innerHTML = `
+                <div style="text-align:center; padding:40px 20px; color:#999;">
+                    <p>등록된 추가 테스트케이스가 없습니다.</p>
+                    <a href="https://www.acmicpc.net/board/search/all/problem/${problemId}" target="_blank" style="color:#3498db; font-size:12px; text-decoration:none;">🔍 질문 게시판 찾아보기</a>
+                </div>
+            `;
+        } else if (result.status === 'error') {
+            contentArea.innerHTML = `<p style="color:#e74c3c; padding:20px; text-align:center;">데이터 로드 중 오류가 발생했습니다.</p>`;
+        } else {
+            renderTestcases(result.data);
+        }
+    } catch (error) {
+        contentArea.innerHTML = `<p style="color:#e74c3c; padding:20px; text-align:center;">알 수 없는 오류가 발생했습니다.</p>`;
     }
 }
 
