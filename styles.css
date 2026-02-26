@@ -1,27 +1,130 @@
 /* sidebar default container */
-#tc-sidebar {
+#boj-tc-sidebar {
     position: fixed;
     top: 0;
     right: -400px; /* hide from display at first*/
     width: 400px;
     height: 100vh;
     background-color: #ffffff;
-    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: -3px 0 10px rgba(0, 0, 0, 0.2);
     z-index: 10000;
     transition: right 0.3s ease-in-out;
     padding: 20px;
-    border-left: 1px solid #ddd;
+    box-sizing: border-box;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 /* class when sidebar has opened */
-#tc-sidebar.active {
+#boj-tc-sidebar.active {
     right: 0;
 }
 
-/* style init (inner TCs) */
-.tc-item {
-    margin-bottom: 15px;
-    padding: 10px;
-    background: #f8f9fa;
+.tc-close-btn {
+    align-self: flex-end;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #666;
+}
+
+/* 로딩 스피너 애니메이션 */
+.loading-spinner {
+    width: 30px;
+    height: 30px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 카드 가독성 개선 */
+.tc-card {
+    border: 1px solid #e1e4e8;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+
+.tc-card:hover {
+    transform: translateY(-2px);
+}
+
+/* card name (ex: ex TC 1, user-added TC 1) */
+.tc-header {
+    background-color: #f8f9fa;
+    padding: 8px 12px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.tc-copy-btn {
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #34495e;
+    color: white;
+    border: none;
     border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.tc-copy-btn:hover {
+    background-color: #2c3e50;
+}
+
+.tc-inner-copy {
+    font-size: 10px;
+    padding: 0px 4px;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    color: #888;
+}
+
+.tc-inner-copy:hover {
+    background: #f1f3f5;
+    color: #3498db;
+}
+
+.tc-body {
+    padding: 12px;
+}
+
+/* 라벨과 버튼을 한 줄에 배치 */
+.tc-label-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.tc-label {
+    font-size: 11px;
+    color: #666;
+    margin-bottom: 4px;
+    font-weight: bold;
+}
+
+.tc-code {
+    background-color: #f1f3f5;
+    padding: 8px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    white-space: pre-wrap;
+    margin-bottom: 10px;
 }
