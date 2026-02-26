@@ -146,14 +146,19 @@ function createSidebar() {
     sidebarElement = document.createElement('div');
     sidebarElement.id = 'boj-tc-sidebar';
 
+    const iconUrl = chrome.runtime.getURL('icon_white.png');
+
     sidebarElement.innerHTML = `
-        <button class="tc-close-btn">×</button>
-        <h2 style="font-size: 18px; margin-bottom: 20px; border-bottom: 2px solid #3498db; padding-bottom: 10px;">
-            Testcases
-        </h2>
-        <div id="tc-content-area">
-            <p style="color: #888;">데이터를 불러오는 중...</p>
+        <div class="sidebar-header">
+            <div class="header-title">
+                <img src="${iconUrl}" class="header-logo">
+                <h2>TC Helper</h2>
+                <span class="header-subtitle">Testcases</span>
+            </div>
+            <button class="tc-close-btn">&times;</button>
         </div>
+        <div id="tc-content-area">
+            </div>
     `;
 
     document.body.appendChild(sidebarElement);

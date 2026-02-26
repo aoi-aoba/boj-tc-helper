@@ -1,14 +1,28 @@
 {
     "manifest_version": 3,
-    "name" : "BOJ Testcase Helper",
+    "name": "BOJ Testcase Helper",
     "version": "1.0.0",
     "description": "백준 문제의 추가 테스트 케이스를 확인합니다.",
+    "icons": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+    },
+    "action": {
+        "default_icon": "icon.png"
+    },
     "permissions": ["activeTab"],
     "content_scripts": [
         {
             "matches": ["https://www.acmicpc.net/problem/*"],
             "js": ["content.js"],
             "css": ["styles.css"]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": ["icon.png", "icon_white.png"],
+            "matches": ["https://www.acmicpc.net/*"]
         }
     ]
 }
